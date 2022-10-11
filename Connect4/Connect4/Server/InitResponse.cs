@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Connect4
+namespace Connect4.Server
 {
     public class InitResponse
     {

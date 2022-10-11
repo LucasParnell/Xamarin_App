@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Numerics;
-using System.Text;
+﻿using Connect4.Server;
+using System;
 using Xamarin.Forms;
-using System.Threading.Tasks;
 
 namespace Connect4
 {
@@ -20,7 +15,8 @@ namespace Connect4
 
 
         public GamePiece[,] gridEntries;
-        public GameGrid(int width, int height) {
+        public GameGrid(int width, int height)
+        {
 
             this.width = width;
             this.height = height;
@@ -51,7 +47,7 @@ namespace Connect4
 
             //Check for lowest entry in column
             int lowest = 0;
-            for(int y = 0; y < height; y++)
+            for (int y = 0; y < height; y++)
             {
                 int rowState = gridEntries[column, y].state;
                 if (rowState == 0)
@@ -78,9 +74,12 @@ namespace Connect4
                 var updateTask = ServerComm.UpdateGame(lastMove);
 
                 //When UpdateGame is done, Parse the response and update the grid
-                await updateTask.ContinueWith(task => {ServerComm.ParseUpdateResponse(task.Result)
+                await updateTask.ContinueWith(task =>
+                {
+                    ServerComm.ParseUpdateResponse(task.Result)
                     .ContinueWith(
-                    async response => {
+                    async response =>
+                    {
                         //Update the grid
                         if (ServerComm.win != 1)
                         {
@@ -88,7 +87,7 @@ namespace Connect4
                             int[] AIlastMove = response.Result;
 
                             var aiEntry = gridEntries[AIlastMove[1], AIlastMove[0]];
-                            
+
                             //Small fade animation
                             aiEntry.Opacity = 0;
                             aiEntry.ChangeState(-PlayerState);
@@ -96,7 +95,8 @@ namespace Connect4
                         }
                         response.Wait();
                     }
-                    ); });
+                    );
+                });
             }
         }
 

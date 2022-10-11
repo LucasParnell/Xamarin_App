@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Connect4.Server;
+using System;
 using Xamarin.Forms;
 
 namespace Connect4
@@ -85,12 +80,13 @@ namespace Connect4
 
 
 
-        private void UpdateGridView(GameGrid gameGrid) {
+        private void UpdateGridView(GameGrid gameGrid)
+        {
             //Increments through Game Pieces
             //Adds each piece to AbsoluteLayout
 
             GridLayout.Children.Clear();
- 
+
 
             for (int x = 0; x < gameGrid.width; x++)
                 for (int y = 0; y < gameGrid.height; y++)
@@ -101,7 +97,7 @@ namespace Connect4
                                 cellSize - GridSpacing,
                                cellSize - GridSpacing);
 
-                    
+
                     GridLayout.Children.Add(entry);
                     AbsoluteLayout.SetLayoutBounds(entry, rect);
                 }

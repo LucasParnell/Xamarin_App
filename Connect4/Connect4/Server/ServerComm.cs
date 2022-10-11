@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Essentials;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using System.ComponentModel;
+using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using Xamarin.Forms;
+using System.Threading.Tasks;
 
-namespace Connect4
+namespace Connect4.Server
 {
     public class ServerComm
     {
         //Basic Connect4 API i have written previously using Flask, NGINX and Azure
         const string serverUrl = "https://zenpanda.uk/";
-        
+
         static HttpClient client = new HttpClient();
 
 
@@ -38,7 +31,7 @@ namespace Connect4
             client = new HttpClient();
 
         }
-       
+
 
 
         public static async Task<HttpResponseMessage> StartGame()
@@ -51,7 +44,7 @@ namespace Connect4
         }
 
 
-        public static async Task<HttpResponseMessage> UpdateGame(int[] lastMove) 
+        public static async Task<HttpResponseMessage> UpdateGame(int[] lastMove)
         {
             //To update, post a JSON string containing the UUID and the last move made
 
@@ -88,7 +81,7 @@ namespace Connect4
 
         public static async Task<int[]> ParseUpdateResponse(HttpResponseMessage response)
         {
-            var move = new int[2] {-1,-1};
+            var move = new int[2] { -1, -1 };
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
