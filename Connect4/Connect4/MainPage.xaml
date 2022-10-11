@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Connect4.MainPage">
+
+        <StackLayout x:Name="MainStack">
+        <Frame BackgroundColor="#d8d5e4" CornerRadius="0">
+            <Label Text="Connect 4" HorizontalTextAlignment="Center" TextColor="#5c5a5b" FontSize="36" x:Name="TitleLabel"/>
+            
+        </Frame>
+        <Frame BackgroundColor="#a29cf4" CornerRadius="25"  Margin="10,60,10,10" Padding="10">
+            <AbsoluteLayout  x:Name="GridLayout" SizeChanged="OnLayoutSizeChanged"/>
+        </Frame>
+
+        <Button Text="Restart" Clicked="OnRestartButton" Margin="15"></Button>
+
+    </StackLayout>
+
+</ContentPage>
